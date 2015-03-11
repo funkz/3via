@@ -1,0 +1,167 @@
+/* CUSTOM STYLES*/
+ul {
+    list-style:none;
+}
+body {
+    background-color:rgba(220,220,220,0.8);
+    padding:0!important;
+    margin-top:-10px;
+    background-image:url("../img/content-bg-100px.png");
+}
+header {
+    background-image:url("../img/header-bg-100px.png");
+    border-bottom:6px ridge #2078c9;
+    box-shadow: 0px 7px 13px -2px rgba(180,180,180,0.8);
+}
+#header-container {
+    margin:0 auto;
+    display:inline-block;
+    width:100%;
+}
+#container {
+    max-width:960px;
+    margin:20px auto;
+}
+footer {
+    border-top:1px groove white;
+    margin-top:20px;
+    box-shadow: 0px -7px 13px -2px rgba(180,180,180,0.8);
+    background: #E5EAE5 url("../img/footer-bg.png");
+    text-align:right;
+   position:absolute;
+   bottom:0;
+   width:100%;
+    background-size:100px;
+}
+footer h5 {
+    margin:0;
+margin-right:20px;
+    color:white;
+    text-shadow: -1px -1px 2px gray;
+}
+/* button styles */
+#login-button {
+    float:left;
+}
+#reg-form-button {
+    float:right;
+}
+#registration-login-form {
+    width: 200px;
+    margin:0 auto;
+}
+button {
+    margin:5px 0;
+}
+#home-nav-btn {
+    background: url("../img/play-icon-30px.png") no-repeat 8px 13px;
+}
+#rank-nav-btn {
+    background: url("../img/ranking-icon-30px.png") no-repeat 8px 15px;
+}
+#add-nav-btn {
+    background: url("../img/add-icon-31px.png") no-repeat 8px 15px;
+}
+#logout-nav-btn {
+    background: url("../img/profile.png") no-repeat 8px 17px;
+}
+nav .btn {
+    float:right;
+    padding:21px 8px 19px 45px;
+    border:none;
+    color:white;
+    background:none;
+    box-shadow: none;
+    border-radius:0;
+    margin:0;
+    text-transform:uppercase;
+    text-shadow:-1px -1px gray;
+}
+nav .btn:hover {
+    background:none;
+    color:white;
+}
+nav .btn:active {
+    border:none;
+    background:none;
+    color:white;
+}
+
+.back-btn {
+    margin-left: 25px;
+}
+
+
+#preloader {
+    margin: 0 auto;
+    height:32px;
+    width:32px;
+    display:block;
+}
+
+#random-game, #custom-game, #question-add-btn, #category-add-btn{
+    display:block;
+    width:200px;
+    margin:30px auto;
+}
+
+
+#logo {
+    margin:0px;
+    padding:0px;
+    margin-left:70px;
+    margin-top:10px;
+    float:left;
+}
+
+td a {
+    width: 150px;
+    display: block;
+    overflow: hidden;
+}
+
+th.headerSortDown { 
+    background:url(../img/arrow-up.png) no-repeat 78px 13px;
+} 
+
+th.headerSortUp { 
+    background:url(../img/arrow-down.png) no-repeat 78px 13px;
+} 
+
+.alert {
+    position:absolute;
+    display:block;
+    width: 50%;
+left: 20%;
+    top:0%;
+}
+.bar {
+    width:99%;
+}
+.progress {
+    height: 35px;
+}
+#timer {
+    line-height: 48px;
+    width:150px;
+    margin:0 auto;
+    font-size: 50px;
+    text-align: right;
+    height: 50px;
+    color: #e2e2e2;
+    text-shadow: 1px 1px white, -1px -1px rgb(126, 126, 126);
+    background: url("../img/time-icon-100px.png") no-repeat;
+    background-size: 45px;
+}
+.answers-input .btn {
+    width:100%;
+}
+.question-container {
+margin: 10px;
+margin-top: 10px;
+}
+#categories-list {
+    margin: 0 auto;
+    width: 215px;
+    text-align:center;
+}
