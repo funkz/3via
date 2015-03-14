@@ -1,0 +1,50 @@
+doctype html
+html
+  include head.jade
+  body.ranking
+    header
+      #header-container
+        h1
+          a(href='index.html')
+            img#logo(src='img/logo.png', alt='3via-logo', height='48', width='130')
+        |             
+        nav
+          ul
+            li
+              a(href='index.html')
+                button#home-nav-btn.btn(type='button')
+                  | &Icy;&gcy;&rcy;&acy;&jcy;
+            |                     
+            li
+              a(href='add.html')
+                button#add-nav-btn.btn(type='button')
+                  | &Dcy;&ocy;&bcy;&acy;&vcy;&icy;
+            |                     
+            li
+              a(href='ranking.html')
+                button#rank-nav-btn.btn(type='button')
+                  | &Kcy;&lcy;&acy;&scy;&acy;&tscy;&icy;&yacy;
+            |       
+            |                     
+            li
+              a(href='')
+                button#logout-nav-btn.btn(type='button')
+                  | &Icy;&zcy;&khcy;&ocy;&dcy;
+    |         
+    section
+      #container
+        table#myTable.tablesorter.table.table-striped
+          thead
+            tr
+              th#name-sort
+                i.icon-user
+              |                             
+              th#games-sort
+                i.icon-picture
+              |                             
+              th#score-sort
+                i.icon-star-empty
+          |                     
+          tfoot
+          |  
+    include footer.jade              
