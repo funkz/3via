@@ -2,4 +2,4 @@
 3via game project from a course
 
 See example:
-http://mkirov.com/portfolio/projects/3via/
+<a href="http://mkirov.com/portfolio/projects/3via/" target="_blank">Click here</a>
