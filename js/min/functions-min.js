@@ -1,8 +1,11 @@
+/*jslint node: true */
+/*global $ */
+
 var serviceRootUrl = "http://trivia-game.apphb.com/api/trivia/";
+
 
 //ON DOCUMENT READY
 $(document).ready(function () {
-    
     $("#logout-nav-btn").hide();
     $("#logout-nav-btn").on("click", logout);
     
@@ -18,8 +21,8 @@ $(document).ready(function () {
     } else if($("body").hasClass("index")) {
         chooseGame();
     } else if($("body").hasClass("add")) {
-        $("#question-add-btn").on("click",onAddQuestionClick);
-        $("#category-add-btn").on("click",onAddCategoryClick);
+        $("#question-add-btn").on("click", onAddQuestionClick);
+        $("#category-add-btn").on("click", onAddCategoryClick);
     }
 });
 
@@ -536,13 +539,11 @@ function logout() {
 
 //countdown timer
 function secondsCount() {
-    var percent = 300;
-    var minutes = 5;
-    var seconds = 0;
-    $("#minutes").html(minutes);
-    $("#seconds").html(seconds);
-    var refreshIntervalId  = setInterval(function() {
-        seconds--;	
+    var percent = 300,
+        minutes = 5,
+        seconds = 0,
+        refreshIntervalId  = setInterval(function () {
+        seconds--;  
         if (seconds == -1) {
             minutes--;
             seconds = 60;
@@ -554,6 +555,9 @@ function secondsCount() {
             clearInterval(refreshIntervalId);
         }
     }, 1000);
+    $("#minutes").html(minutes);
+    $("#seconds").html(seconds);
+    
     setInterval( function(){percent--;$(".bar").css("width",percent/3 + "%");},1000)
 }
 
@@ -582,7 +586,7 @@ function onError(errData) {
                         "<p>" + "<a href id='reload-page'>Презареждане</a>" + "</p>"
                     "</div>";
                         
-    $('#reload-page').on("click",reloadPage);
+    $('#reload-page').on("click", reloadPage);
     $("#container").html(errorUI);
 }
 
@@ -625,7 +629,7 @@ function performPostRequest(serviceUrl, data, onSuccess, onError) {
 }
 
 //POST REQUEST - v2
-function performPostRequest2 (serviceUrl, data, onSuccess, onError) { // Upgraded function used in "Add question" service
+function performPostRequest2(serviceUrl, data, onSuccess, onError) { // Upgraded function used in "Add question" service
     $.ajax({
         url: serviceUrl,
         contentType: "application/json; charset=utf-8", //This is added
