@@ -1,7 +1,7 @@
 doctype html
 html
-head
-  include head.jade
+  head
+    include head.jade
   body.index
     header
       #header-container
@@ -30,9 +30,16 @@ head
               a(href='')
                 button#logout-nav-btn.btn(type='button')
                   | &Icy;&zcy;&khcy;&ocy;&dcy;
-    |             
-    section
-      #container
-        form#registration-login-form
-          fieldset
-    include footer.jade
+    .main.container
+      .row.p-top-bottom
+        .col-md-4
+          p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure facere accusamus eum et, rerum possimus accusantium adipisci repudiandae delectus laborum. 
+        .col-md-4
+          p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure facere accusamus eum et, rerum possimus accusantium adipisci repudiandae delectus laborum. 
+        .col-md-4
+          p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure facere accusamus eum et, rerum possimus accusantium adipisci repudiandae delectus laborum. 
+      .row
+        #container
+          form#registration-login-form
+            fieldset
+    //- include footer.jade
