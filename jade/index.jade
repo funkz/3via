@@ -2,7 +2,7 @@ doctype html
 html
   head
     include head.jade
-  body
+  body.choose-game
     header
       #header-container
         h1
@@ -12,19 +12,18 @@ html
         nav
           ul                         
             li
-              a(href='')
+              a(href='#')
                 button#logout-nav-btn.btn(type='button') LOG OUT
             li
-              a(href='add.html')
+              a(href='#' class='menu_btn add-question-menu-btn')
                 button#add-nav-btn.btn(type='button') ADD question
-            |                             
             li
-              a(href='ranking.html')
+              a(href='#' class='menu_btn leaderboard-menu-btn')
                 button#rank-nav-btn.btn(type='button') LEADERBOARD
             li
-              a(href='index.html')
+              a(href='#' class='menu_btn play-menu-btn')
                 button#play-nav-btn.btn(type='button') PLAY
-    
+
     .main.container.valign-wrapper
       #container.row.valign
         .col-md-12
@@ -35,9 +34,9 @@ html
             h1.col-md-12.text-center.hero-title Play and learn
           .row.top-40
             .col-md-4.col-sm-12.text-right
-              a.btn.btn-link.btn-lg Leaderboard 
+              a.btn.btn-link.btn-lg.start-btn.leaderboard Leaderboard 
             .col-md-4.col-sm-12.text-center
               a(href='#').btn.btn-success.btn-lg.start-btn START
             .col-md-4.col-sm-12.text-left
-              a.btn.btn-link.btn-lg Add question
+              a.btn.btn-link.btn-lg.start-btn.add-question Add question
 

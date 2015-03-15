@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">        
     <meta name="robots" content="noindex">        
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-            
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">        
     <title>3via - online question game</title>        
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Comfortaa:400,300,700&amp;subset=cyrillic,latin">        
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">        
@@ -13,24 +12,24 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>        
     <script src="js/simple-modal.js"></script>        
     <script src="js/jquery.hideseek.js"></script>        
-    <script src="js/new.js"></script>        
+    <script src="js/min/new-min.js"></script>        
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"></script>        
     <script src="js/jquery.tablesorter.min.js"></script> 
     <script src="js/min/functions-min.js"></script>
   </head>
-  <body>
+  <body class="choose-game">
     <header>
       <div id="header-container">
         <h1><a href="index.html"><img id="logo" src="img/logo.png" alt="3via-logo" height="51" width="130"></a></h1>                    
         <nav>
           <ul>                        
-            <li><a href="">
+            <li><a href="#">
                 <button id="logout-nav-btn" type="button" class="btn">LOG OUT</button></a></li>
-            <li><a href="add.html">
-                <button id="add-nav-btn" type="button" class="btn">ADD question</button></a></li>                            
-            <li><a href="ranking.html">
+            <li><a href="#" class="menu_btn add-question-menu-btn">
+                <button id="add-nav-btn" type="button" class="btn">ADD question</button></a></li>
+            <li><a href="#" class="menu_btn leaderboard-menu-btn">
                 <button id="rank-nav-btn" type="button" class="btn">LEADERBOARD</button></a></li>
-            <li><a href="index.html">
+            <li><a href="#" class="menu_btn play-menu-btn">
                 <button id="play-nav-btn" type="button" class="btn">PLAY</button></a></li>
           </ul>
         </nav>
@@ -46,9 +45,9 @@
             <h1 class="col-md-12 text-center hero-title">Play and learn</h1>
           </div>
           <div class="row top-40">
-            <div class="col-md-4 col-sm-12 text-right"><a class="btn btn-link btn-lg">Leaderboard </a></div>
+            <div class="col-md-4 col-sm-12 text-right"><a class="btn btn-link btn-lg start-btn leaderboard">Leaderboard </a></div>
             <div class="col-md-4 col-sm-12 text-center"><a href="#" class="btn btn-success btn-lg start-btn">START</a></div>
-            <div class="col-md-4 col-sm-12 text-left"><a class="btn btn-link btn-lg">Add question</a></div>
+            <div class="col-md-4 col-sm-12 text-left"><a class="btn btn-link btn-lg start-btn add-question">Add question</a></div>
           </div>
         </div>
       </div>

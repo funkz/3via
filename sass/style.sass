@@ -4,7 +4,7 @@ ul
   list-style: none
 
 body 
-  padding: 0!important
+  padding: 0
   margin-top: -10px
   background: rgba(220,220,220,0.8) url("../img/content-bg-100px.png")
 
@@ -42,8 +42,11 @@ footer h5
 /* button styles */
 
 #registration-login-form 
-  width:  200px
+  // width:  200px
   margin: 0 auto
+
+.choose-game #container
+  margin: 0
 
 button 
   margin: 5px 0
@@ -51,7 +54,7 @@ button
 #play-nav-btn 
   background:  url("../img/icon-rocket.png") no-repeat 8px 7px
   background: url("../img/icon-rocket.png") no-repeat 13px 19px
-  transition: all 1s ease-in-out
+  transition: background 0.9s ease-in-out
   background-size: 21px
 #play-nav-btn:hover
   background:  url("../img/icon-rocket.png") no-repeat 40px -90px
@@ -67,7 +70,7 @@ button
 
 #logout-nav-btn 
   background:  url("../img/icon-log-out.png") no-repeat 16px 19px
-  transition: all 1s ease-in-out
+  // transition: all 1s ease-in-out
   margin-left: 70px
   margin-right: 20px
   background-size: 18px
@@ -110,6 +113,7 @@ nav .btn:active
   left: 50%
   margin-top: -16px
   margin-left: -16px
+  z-index: 999999
 
 
 #random-game, #custom-game, #question-add-btn, #category-add-btn
@@ -145,10 +149,14 @@ th.headerSortUp
 
 .alert 
   position: absolute
-  display: block
-  width:  50%
-  left:  20%
-  top: 0%
+  width: 200px
+  z-index: 999999
+  top: 0
+  left: 50%
+  margin-left: -100px
+  text-align: center
+    
+
 
 .bar 
   width: 99%
@@ -177,9 +185,14 @@ th.headerSortUp
 
 #categories-list 
   margin:  0 auto
-  width:  215px
+  // width:  215px
   text-align: center
-
+  li
+    width: 200px
+    float: left
+    margin-right: 30px
+    margin-left: 30px
+    text-align: left
 /* Vars */
 $green: #468966
 $green-dark: #3D7556
@@ -208,15 +221,28 @@ img
   display: table
   table-layout: fixed
 
+textarea, input
+  -webkit-appearance: none
+
 .valign
   display: table-cell
   vertical-align: middle
   text-align: center
   width: 100%
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus
+  -webkit-appearance: none
+  outline: none
+.btn.active, .btn:active
+  box-shadow: none
+header .btn:hover
+  transform: scale(1.1)
 .btn
   border-radius: 100px
+  transition: 0.1s ease-in-out
 .btn:hover
   text-decoration: none
+.btn:focus
+  color: white
 .btn.btn-success
   background: white
   border: 1px solid white
@@ -235,6 +261,58 @@ img
   color: $red
   width: 170px
   transition: all 0.3s ease-in-out
+.btn.form
+  background: $red
+  color: white
+  margin-bottom: 7px
+
+/* Login/Register form */ 
+#simple-modal
+  border: none
+  display: block 
+  width: 300px
+  height: 300px
+  left: 50%
+  top: 50%
+  margin-left: -150px
+  margin-top: -150px
+  overflow: hidden
+  font-family: comfortaa, sans-serif
+  a.close
+    right: 2px
+    top: 2px
+    padding: 12px
+    color: black
+    opacity: 0.6
+  legend
+    display: block
+    width: 100%
+    padding: 0
+    padding-top: 18px
+    text-align: center
+    background: #E4E4E4
+    min-height: 54px
+    margin-bottom: 20px
+    font-size: 21px
+    line-height: inherit
+    color: #666666
+    border: 0
+    border-bottom: 1px solid #BDBDBD
+    text-transform: uppercase
+    font-size: 16px
+  textarea, input
+    -webkit-appearance: none
+    border: none
+    outline: none
+    border-bottom: 1px solid #BDBDBD
+    width: 100%
+    margin-bottom: 10px
+    font-size: 11px
+    letter-spacing: 0.5px
+    font-weight: 300
+    color: black
+  .inner-form
+    padding: 0 29px
 
 
 /* Splash page styles */ 
@@ -257,7 +335,7 @@ body
   position: absolute
   width: 14px
   height: 100px
-  right: 149px
+  right: 132px
   top: 46px
   background: #FAAE3C
   transition: all 0.3s ease-in-out
@@ -270,15 +348,15 @@ body
   background: #B74926
   border-radius: 100px
   position: absolute
-  right: 139px
-  top: 46px
+  right: 123px
+  top: 29px
   transition: all 0.3s ease-in-out
 .col-md-6:hover .ball
   top: 90px
 .col-md-6 .icon-check
   width: 50px
   position: absolute
-  right: 149px
+  right: 131px
   top: 115px
   transition: all 0.3s ease-in-out
 .col-md-6:hover .icon-check
@@ -304,8 +382,43 @@ header
   button
     opacity: 0.4
 
+img.responsive
+  display: none
 
-
+@media (min-width: 992px)
+  .container 
+    width: 1100px
+@media(max-width:1000px)
+  body
+    .col-md-4
+      text-align: center
+      .start-btn
+        margin-bottom: 20px
+      .leaderboard, .add-question
+        display: none
+    #logo
+      margin-left: 20px
+      margin-top: 14px
+      float: left
+      width: 58px
+      height: 30px
+    nav
+      display: none
+    #container
+      .category
+        img, .handle, .ball, .check
+          display: none
+        img.responsive
+          display: block
+          max-width: 200px
+          margin: 0 auto
+          margin-top: 40px
+      .icon-text
+        margin-bottom: 20px
+      .btn.btn-link.red
+        background: $red
+        color: $white
+        margin-bottom: 70px
 
 
 

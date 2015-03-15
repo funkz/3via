@@ -6,28 +6,32 @@ var serviceRootUrl = "http://trivia-game.apphb.com/api/trivia/";
 
 //ON DOCUMENT READY
 $(document).ready(function () {
-    $("#logout-nav-btn").hide();
-    $("#logout-nav-btn").on("click", logout);
+    pageSelection();
+});
+
+function pageSelection(){
+    $("body").on("click", "#logout-nav-btn", logout);
     
     if (sessionStorage.userData != undefined ) {  
         $("#logout-nav-btn").show();
         chooseGame();
         $('header').show();
     }
-    
-    if ($("body").hasClass("ranking")) {
-        performGetRequest(serviceRootUrl + "users-all", onRankingRequestSuccess, onError);
-    }
+
     if (sessionStorage.userData === undefined) {
         onLoginFormBtnClick();
-    } else if($("body").hasClass("index")) {
+    } else if($("body").hasClass("choose-game")) { //If choose game screen
         chooseGame();
-    } else if($("body").hasClass("add")) {
+    } else if($("body").hasClass("leaderboard")) { //If leaderboard screen
+        $('body #container .row.game').remove();
+        performGetRequest(serviceRootUrl + "users-all", onRankingRequestSuccess, onError);
+    } else if($("body").hasClass("add-questions")) { //If add questions screen
+        $('body #container .row.game').remove();
+        $('body #container').prepend("<div class='row game'><div class='col-md-6 random category'><img class='icon-resize' src='img/icon-add-questions.png'><img class='icon-resize responsive' src='img/icon-add-questions.png'><p class='top-20 icon-text'>Select a category to add a question to. 1 question with 4 answers required.</p><button id='question-add-btn' class='btn btn-link red'>ADD QUESTION</button></div><div class='col-md-6 random category'><img class='icon-resize' src='img/icon-add-categories.png'><img class='icon-resize responsive' src='img/icon-add-categories.png'><p class='top-20 icon-text'>Add a new category.<br> 10 questions with 4 answer each required.</p><button id='category-add-btn' class='btn btn-link red'>ADD CATEGORY</button></div></div>");
         $("#question-add-btn").on("click", onAddQuestionClick);
         $("#category-add-btn").on("click", onAddCategoryClick);
     }
-});
-
+}
 //Collecting data   
 function collectData() {
     var usernameValue = $("#tb-username").val();
@@ -47,12 +51,12 @@ function collectData() {
 //Go to Login Form, button click
 function onLoginFormBtnClick() {
     var legendHtml =        '<legend>Login</legend>';
-    var usernameHtml =      '<label for="tb-username"></label>' +
+    var usernameHtml =      '<div class="inner-form"><label for="tb-username"></label>' +
                             '<input id="tb-username" type="text" autofocus="autofocus" placeholder="username"/> ';
     var passHtml =          '<label for="tb-pass"></label>' +
                             '<input id="tb-pass" type="password" placeholder="password"/>';
-    var loginButtonHtml =   '<button type="button" id="login-button" class="btn btn-default full-width btn-md">Login</button>';
-    var regFormBtnHtml =    '<button type="button" id="reg-form-button" class="btn btn-link green full-width btn-xs">Register</button>';
+    var loginButtonHtml =   '<button type="button" id="login-button" class="btn form full-width btn-md">Login</button>';
+    var regFormBtnHtml =    '<button type="button" id="reg-form-button" class="btn btn-link green full-width btn-xs">Register</button></div>';
     
     $("#registration-login-form fieldset").html(legendHtml + usernameHtml + passHtml + loginButtonHtml + regFormBtnHtml);
     
@@ -71,8 +75,8 @@ function onRegFormBtnClick() {
                             '<input id="tb-nickname" type="text" placeholder="nickname" />';
     var repeatPassHtml =    '<label for="tb-repeat-pass"></label>' +
                             '<input id="tb-repeat-pass" type="password" placeholder="repeat password"/>';
-    var registerButton =    '<button type="button" id="register-button" class="btn btn-default full-width btn-md">Register</button>';
-    var backToLoginBtn =    '<button type="button" id="login-form-button" class="btn btn-link green full-width btn-xs">Login</button>';
+    var registerButton =    '<div class="inner-form"><button type="button" id="register-button" class="btn form full-width btn-md">Register</button>';
+    var backToLoginBtn =    '<button type="button" id="login-form-button" class="btn btn-link green full-width btn-xs">Login</button></div>';
     
     $("#registration-login-form fieldset legend").html(legendHtml);
     $("#tb-username").after(nicknameHtml);
@@ -91,12 +95,12 @@ function onLoginBtnClick() {
     var userData = collectData();
     
      if (userData.username === "") {
-        windowUI("Напишете име");
+        windowUI("Please enter name");
         event.preventDefault();
         return;
     }
     if (userData.pass === "") {
-        windowUI("Напишете парола");
+        windowUI("Please enter password");
         event.preventDefault();
         return;
     }
@@ -113,12 +117,13 @@ function onLoginBtnClick() {
 //Login Success
 function onUserLoginSuccess(data) {
     
-        $("#logout-nav-btn").show();
+    $("#logout-nav-btn").show();
     userInfo = sessionStorage.setItem('userData',JSON.stringify(userInfo));
     
     preLoaderEnd();
     
-    windowUI("Успешно Влизане");
+    // not needed
+    // windowUI("Успешно Влизане");
     
     if (data === null) {
         $("#registration-login-form").remove();
@@ -182,7 +187,7 @@ function chooseGame() {
     $('body').addClass('body-recolor');
     $("#start-game").remove();
     // new
-    var startGameHtml = '<div class="row"><div class="col-md-6 random category"><img class="icon-resize" src="img/icon-slot-machine.png"><div class="handle"></div><div class="ball"></div><p class="top-20 icon-text">Play with random questions from different categories.</p><button id="random-game" class="btn btn-link red">START</div><div class="col-md-6 pick category"><img class="icon-check" src="img/icon-check.png"><img class="icon-resize" src="img/icon-categories.png"><p class="top-20 icon-text">Pick your own category <br> to play from.</p><button id="custom-game" class="btn btn-link red">START</div></div></div>'
+    var startGameHtml = '<div class="row game"><div class="col-md-6 random category"><img class="icon-resize" src="img/icon-slot-machine.png"><img class="icon-resize responsive" src="img/icon-slot-machine-resp.png"><div class="handle"></div><div class="ball"></div><p class="top-20 icon-text">Play with random questions from different categories.</p><button id="random-game" class="btn btn-link red">START</div><div class="col-md-6 pick category"><img class="icon-check" src="img/icon-check.png"><img class="icon-resize" src="img/icon-categories.png"><img class="icon-resize responsive" src="img/icon-categories-responsive.png"><p class="top-20 icon-text">Pick your own category <br> to play from.</p><button id="custom-game" class="btn btn-link red">START</div></div></div>'
     $("#container").html(startGameHtml);
     $("#random-game").on("click", startRandomGame);
     $("#custom-game").on("click", startCustomGame);
@@ -208,10 +213,18 @@ function startCustomGame() {
 
 //Get Categories Success
 function onSuccessGetCategories (data) {
-        var categoriesHtml=  '<ul id="categories-list" class="default_list">' +
+        var categoriesHtml=  '<ul id="categories-list col-md-12" class="default_list">' +
                              '</ul>'  ;
                              // new
-        $("#container").html("<div class='row margin top-40'><form class='col-md-12' role='search'><div class='form-group'><input type='text' data-list='.default_list' autocomplete='off' id='search' name='search' class='form-control search' placeholder='Search'></div></form><p>В асфафса категория?</p></div>" + categoriesHtml);
+        $("#container").html("\
+            <div class='row margin top-40'>\
+                <form class='col-md-12' role='search'>\
+                    <div class='form-group'>\
+                        <input type='text' data-list='.default_list' autocomplete='off' id='search' name='search' class='form-control search' placeholder='Search'>\
+                    </div>\
+                </form>\
+                <p>В асфафса категория?</p></div>" +
+                categoriesHtml);
         for (i=0;i<data.length;i++) {
             $("#categories-list").append('<li>' + '<a href data-id="' + data[i].id + '">' + data[i].name  + '</a>' + '</li>');
         }
@@ -236,7 +249,6 @@ function chosenCategory() {
 function onStartGameSuccess(data) {
     preLoaderEnd();
     // new
-    // $("header").hide();
     $("header").addClass('disable');
     var timerHtml = '<div id="countdown">' +
                        '<div class="progress progress-striped active"><div class="bar"></div></div>' +
@@ -310,7 +322,7 @@ function collectDataAnswers() {
 //add question
 function onAddQuestionClick() {
     performGetRequest(serviceRootUrl + "categories", function(data) {
-    var categoriesHtml=     '<ul id="categories-list">' +
+    var categoriesHtml=     '<h2 class="heading-text">Please choose category</h2><ul id="categories-list" class="col-md-12">' +
                             '</ul>';
     $("#container").html(categoriesHtml);
     for (i=0;i<data.length;i++) {
@@ -347,6 +359,7 @@ function printQuestionForm() {
     var category = $(this).parent().attr("data-id");
     
     $("#add-question-btn").on("click",function() {
+        console.log('test');
         var questionData = collectQuestionData();
         performPostRequest2(serviceRootUrl + "add-question/" + category, questionData, function(){windowUI("въпрос добавен");reloadPage();}, onError);
     });
@@ -359,7 +372,7 @@ function collectQuestionData() {
     var wrongAnswer1Value = $(".wrong-answer1-input").val();
     var wrongAnswer2Value = $(".wrong-answer2-input").val();
     var wrongAnswer3Value = $(".wrong-answer3-input").val();
-    var userData = JSON.parse(localStorage.userData);
+    var userData = JSON.parse(sessionStorage.userData);
     var question =  {"user":userData,
                      "question":{ "text":questionValue, 
                                 "correctAnswers": [
@@ -378,7 +391,7 @@ function collectQuestionData() {
 
 function collectCatData() {
     
-    var userData = JSON.parse(localStorage.userData);
+    var userData = JSON.parse(sessionStorage.userData);
     
     var categoryName = $("#categoryNameInput").val();
     var questionValue = $('.question-input').map(function() { return this.value; }).get();
@@ -476,9 +489,8 @@ function onAddCategoryClick() {
 
 //ranking 
 function onRankingRequestSuccess(data) {
-    
     preLoaderEnd();
-    $("#container").prepend("<h3 class='text-info'>Общо регистрирани играчи: " + data.length + "</h3>");
+    $("#container").prepend("<form class='col-md-12' role='search'><div class='form-group'><input type='text' data-list='.ranking-list' autocomplete='off' id='search' name='search' class='form-control search' placeholder='Search'></div></form><h3 class='text-info'>Общо регистрирани играчи: " + data.length + "</h3>" + "<table id='#myTable' class='ranking-list tablesorter table table-striped'><thead><tr><th id='name-sort'><i class='icon-user'></i></th><th id='games-sort'><i class='icon-picture'></i></th><th id='score-sort'><i class='icon-star-empty'></i></th></tr></thead><tbody id='ranking-body'></tbody></table>");
     $("#name-sort").append("Име");
     $("#games-sort").append("Игри");
     $("#score-sort").append("Точки");
@@ -487,11 +499,8 @@ function onRankingRequestSuccess(data) {
         $("#ranking-body .current").append('<td>' + '<a href>' + data[i].nickname + '</a>' + '</td>' + '<td>' + data[i].games +'</td>' + '<td>' + Math.round(data[i].score) +'</td>');
         $("#ranking-body tr").removeAttr("class");
     }
-        { 
-            $("#myTable").tablesorter({
-                 sortList: [[2,1]] 
-            }); 
-        }
+    // new - fix
+    $("#myTable").tablesorter(); 
     
     $("#container").append("<button class='expand-all-users btn btn-info'>Виж всички потребители</button>");
     
@@ -552,6 +561,7 @@ function reloadPage() {
 //LOGOUT
 function logout() {
     sessionStorage.clear();
+    location.reload();
 }
 
 
@@ -581,7 +591,7 @@ function secondsCount() {
 
 //UI alert window
 function windowUI (param) {
-    var windowUI =  "<div class='alert alert-info'>" +
+    var windowUI =  "<div class='alert alert-info' role='alert'>" +
                         "<p>" + param + "</p>"  +
                     "</div>";
     $("#container").before(windowUI);
@@ -598,10 +608,10 @@ function onError(errData) {
     } else {
         var errorText = " ";
     }
-    var errorUI =   "<div class='alert alert-error'>" +
-                        "<h4>Възникна грешка</h4>" +
+    var errorUI =   "<div class='alert alert-danger' role='alert'>" +
+                        // "<h4>Възникна грешка</h4>" +
                         "<p>"+ statusText + "<br/>" + errorText + "</p>" +
-                        "<p>" + "<a href id='reload-page'>Презареждане</a>" + "</p>"
+                        "<p>" + "<a href id='reload-page'>Reload?</a>" + '<br>or<br>' + '<a href="#" class="close-alert">Close</a>' + "</p>"
                     "</div>";
                         
     $('#reload-page').on("click", reloadPage);
