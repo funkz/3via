@@ -213,28 +213,15 @@ function startCustomGame() {
 
 //Get Categories Success
 function onSuccessGetCategories (data) {
-        var categoriesHtml=  '<ul id="categories-list col-md-12" class="default_list">' +
+        var categoriesHtml=  '<ul id="categories-list">' +
                              '</ul>'  ;
-                             // new
-        $("#container").html("\
-            <div class='row margin top-40'>\
-                <form class='col-md-12' role='search'>\
-                    <div class='form-group'>\
-                        <input type='text' data-list='.default_list' autocomplete='off' id='search' name='search' class='form-control search' placeholder='Search'>\
-                    </div>\
-                </form>\
-                <p>В асфафса категория?</p></div>" +
-                categoriesHtml);
+        $("#container").html("<p>Ð’ ÐºÐ¾Ñ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸Ñ?</p>" + categoriesHtml);
         for (i=0;i<data.length;i++) {
             $("#categories-list").append('<li>' + '<a href data-id="' + data[i].id + '">' + data[i].name  + '</a>' + '</li>');
         }
         $("#categories-list li a").on("click", chosenCategory);
-        $('#search').hideseek({
-          highlight: true
-        });
-        $('#container').removeClass('valign');
-        $('.valign-wrapper').removeClass('valign-wrapper');
-}
+}   
+
 
 //Choosen Category Success
 function chosenCategory() {

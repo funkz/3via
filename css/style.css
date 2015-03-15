@@ -10,7 +10,8 @@ body {
 header {
   background-image: url("../img/header-bg-100px.png");
   border-bottom: 6px ridge #2078c9;
-  height: 89px; }
+  height: 89px;
+  transition: height 0.3s ease-in-out; }
 
 #header-container {
   margin: 0 auto;
@@ -174,7 +175,10 @@ th.headerSortUp {
     float: left;
     margin-right: 30px;
     margin-left: 30px;
-    text-align: left; }
+    text-align: left;
+    height: 28px;
+    overflow: hidden;
+    padding: 6px 0; }
 
 /* Vars */
 /* Base */
@@ -393,6 +397,9 @@ header {
 img.responsive {
   display: none; }
 
+.responsive-menu {
+  display: none; }
+
 @media (min-width: 992px) {
   .container {
     width: 1100px; } }
@@ -411,6 +418,8 @@ img.responsive {
     height: 30px; }
   body nav {
     display: none; }
+    body nav button {
+      width: 100%; }
   body #container .category img, body #container .category .handle, body #container .category .ball, body #container .category .check {
     display: none; }
   body #container .category img.responsive {
@@ -423,4 +432,21 @@ img.responsive {
   body #container .btn.btn-link.red {
     background: #B74926;
     color: #fff;
-    margin-bottom: 70px; } }
+    margin-bottom: 70px; }
+  body .responsive-menu {
+    display: block;
+    position: absolute;
+    right: 25px;
+    top: 19px;
+    font-size: 30px;
+    color: white; }
+  body .resp-active {
+    height: 330px; }
+    body .resp-active nav {
+      display: block; }
+      body .resp-active nav ul {
+        margin-left: -60px; }
+      body .resp-active nav #logout-nav-btn, body .resp-active nav #add-nav-btn, body .resp-active nav #rank-nav-btn, body .resp-active nav #play-nav-btn {
+        background: none; }
+      body .resp-active nav #logout-nav-btn {
+        padding-left: 81px; } }

@@ -33,7 +33,9 @@ $(document).ready(function () {
   $('body').on('click', '.close-alert', function(){
       $('.alert').remove();
   });
-
+  $('.glyphicon-menu-hamburger').on('click', function(){
+      $('header').toggleClass('resp-active');
+  });
 
 });
 

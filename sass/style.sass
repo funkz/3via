@@ -13,6 +13,7 @@ header
   border-bottom: 6px ridge #2078c9
   // box-shadow: 0px 7px 13px -2px rgba(180,180,180,0.8)
   height: 89px
+  transition: height 0.3s ease-in-out
 
 #header-container 
   margin: 0 auto
@@ -193,6 +194,9 @@ th.headerSortUp
     margin-right: 30px
     margin-left: 30px
     text-align: left
+    height: 28px
+    overflow: hidden
+    padding: 6px 0
 /* Vars */
 $green: #468966
 $green-dark: #3D7556
@@ -384,7 +388,8 @@ header
 
 img.responsive
   display: none
-
+.responsive-menu
+  display: none
 @media (min-width: 992px)
   .container 
     width: 1100px
@@ -404,6 +409,8 @@ img.responsive
       height: 30px
     nav
       display: none
+      button
+        width: 100%
     #container
       .category
         img, .handle, .ball, .check
@@ -419,6 +426,21 @@ img.responsive
         background: $red
         color: $white
         margin-bottom: 70px
-
-
+    .responsive-menu
+      display: block
+      position: absolute
+      right: 25px
+      top: 19px
+      font-size: 30px
+      color: white
+    .resp-active
+      height: 330px
+      nav
+        display: block
+        ul
+          margin-left: -60px
+        #logout-nav-btn, #add-nav-btn, #rank-nav-btn, #play-nav-btn
+          background: none
+        #logout-nav-btn
+          padding-left: 81px
 
