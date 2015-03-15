@@ -10,7 +10,7 @@ body {
 header {
   background-image: url("../img/header-bg-100px.png");
   border-bottom: 6px ridge #2078c9;
-  box-shadow: 0px 7px 13px -2px rgba(180, 180, 180, 0.8); }
+  height: 89px; }
 
 #header-container {
   margin: 0 auto;
@@ -35,16 +35,9 @@ footer {
 footer h5 {
   margin: 0;
   margin-right: 20px;
-  color: white;
-  text-shadow: -1px -1px 2px gray; }
+  color: white; }
 
 /* button styles */
-#login-button {
-  float: left; }
-
-#reg-form-button {
-  float: right; }
-
 #registration-login-form {
   width: 200px;
   margin: 0 auto; }
@@ -52,17 +45,30 @@ footer h5 {
 button {
   margin: 5px 0; }
 
-#home-nav-btn {
-  background: url("../img/play-icon-30px.png") no-repeat 8px 13px; }
+#play-nav-btn {
+  background: url("../img/icon-rocket.png") no-repeat 8px 7px;
+  background: url("../img/icon-rocket.png") no-repeat 13px 19px;
+  transition: all 1s ease-in-out;
+  background-size: 21px; }
+
+#play-nav-btn:hover {
+  background: url("../img/icon-rocket.png") no-repeat 40px -90px;
+  background-size: 21px; }
 
 #rank-nav-btn {
-  background: url("../img/ranking-icon-30px.png") no-repeat 8px 15px; }
+  background: url("../img/icon-star.png") no-repeat 15px 19px;
+  background-size: 20px; }
 
 #add-nav-btn {
-  background: url("../img/add-icon-31px.png") no-repeat 8px 15px; }
+  background: url("../img/icon-pencil.png") no-repeat 18px 19px;
+  background-size: 20px; }
 
 #logout-nav-btn {
-  background: url("../img/profile.png") no-repeat 8px 17px; }
+  background: url("../img/icon-log-out.png") no-repeat 16px 19px;
+  transition: all 1s ease-in-out;
+  margin-left: 70px;
+  margin-right: 20px;
+  background-size: 18px; }
 
 nav .btn {
   float: right;
@@ -74,7 +80,7 @@ nav .btn {
   border-radius: 0;
   margin: 0;
   text-transform: uppercase;
-  text-shadow: -1px -1px gray; }
+  margin-left: 15px; }
 
 nav .btn:hover {
   background: none;
@@ -92,11 +98,16 @@ nav .btn:active {
   margin: 0 auto;
   height: 32px;
   width: 32px;
-  display: block; }
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -16px;
+  margin-left: -16px; }
 
 #random-game, #custom-game, #question-add-btn, #category-add-btn {
   display: block;
-  width: 200px;
+  min-width: 150px;
   margin: 30px auto; }
 
 #logo {
@@ -104,7 +115,9 @@ nav .btn:active {
   padding: 0px;
   margin-left: 70px;
   margin-top: 10px;
-  float: left; }
+  float: left;
+  width: 78px;
+  height: 40px; }
 
 td a {
   width: 150px;
@@ -154,6 +167,7 @@ th.headerSortUp {
   width: 215px;
   text-align: center; }
 
+/* Vars */
 /* Base */
 html, body, .container {
   height: 100%; }
@@ -189,14 +203,110 @@ img {
   text-align: center;
   width: 100%; }
 
+.btn {
+  border-radius: 100px; }
+
+.btn:hover {
+  text-decoration: none; }
+
 .btn.btn-success {
-  background: #468966;
-  border: none;
-  min-width: 300px; }
+  background: white;
+  border: 1px solid white;
+  min-width: 250px;
+  color: #468966;
+  font-weight: 500; }
+
+.btn.btn-link {
+  color: #fff;
+  border: 1px solid #fff; }
+
+.btn.btn-link.green {
+  color: #3D7556; }
+
+.btn.full-width {
+  width: 100%; }
+
+.btn.btn-link.red {
+  border-color: #B74926;
+  color: #B74926;
+  width: 170px;
+  transition: all 0.3s ease-in-out; }
 
 /* Splash page styles */
-body.splash {
-  background: #468966; }
+body {
+  background: #468966;
+  font-family: "Comfortaa", sans-serif; }
 
 .front-ill img {
   max-width: 100%; }
+
+.hero-title {
+  color: white;
+  font-weight: 300; }
+
+.body-recolor {
+  background: #FFDEAF; }
+
+/* game page styles */
+.icon-resize {
+  max-width: 300px; }
+
+.handle {
+  position: absolute;
+  width: 14px;
+  height: 100px;
+  right: 149px;
+  top: 46px;
+  background: #FAAE3C;
+  transition: all 0.3s ease-in-out; }
+
+.col-md-6:hover .handle {
+  height: 42px;
+  top: 110px; }
+
+.ball {
+  width: 33px;
+  height: 33px;
+  background: #B74926;
+  border-radius: 100px;
+  position: absolute;
+  right: 139px;
+  top: 46px;
+  transition: all 0.3s ease-in-out; }
+
+.col-md-6:hover .ball {
+  top: 90px; }
+
+.col-md-6 .icon-check {
+  width: 50px;
+  position: absolute;
+  right: 149px;
+  top: 115px;
+  transition: all 0.3s ease-in-out; }
+
+.col-md-6:hover .icon-check {
+  transform: scale(1.3); }
+
+.col-md-6:hover .btn.btn-link.red {
+  color: #FFDEAF;
+  background: #B74926; }
+
+header {
+  box-shadow: none;
+  border-bottom: none;
+  background: #468966; }
+  header .btn {
+    letter-spacing: 1px; }
+
+.icon-text {
+  max-width: 200px;
+  margin: 0 auto;
+  color: #468966;
+  margin-bottom: 60px; }
+
+.category {
+  cursor: pointer; }
+
+.disable #logo,
+.disable button {
+  opacity: 0.4; }

@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+    include head.jade
+  body.index
+    header
+      #header-container
+        h1
+          a(href='index.html')
+            img#logo(src='img/logo.png', alt='3via-logo', height='51', width='130')
+        |                     
+        nav
+          ul
+            li
+              a(href='index.html')
+                button#home-nav-btn.btn(type='button')
+                  | &Icy;&gcy;&rcy;&acy;&jcy;!
+            |                             
+            li
+              a(href='add.html')
+                button#add-nav-btn.btn(type='button')
+                  | &Dcy;&ocy;&bcy;&acy;&vcy;&icy;
+            |                             
+            li
+              a(href='ranking.html')
+                button#rank-nav-btn.btn(type='button')
+                  | &Kcy;&lcy;&acy;&scy;&acy;&tscy;&icy;&yacy;
+            |                             
+            li
+              a(href='')
+                button#logout-nav-btn.btn(type='button')
+                  | &Icy;&zcy;&khcy;&ocy;&dcy;
+    .main.container
+      .row.p-top-bottom
+        .col-md-4
+          p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure facere accusamus eum et, rerum possimus accusantium adipisci repudiandae delectus laborum. 
+        .col-md-4
+          p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure facere accusamus eum et, rerum possimus accusantium adipisci repudiandae delectus laborum. 
+        .col-md-4
+          p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure facere accusamus eum et, rerum possimus accusantium adipisci repudiandae delectus laborum. 
+      .row
+        #container
+          form#registration-login-form
+            fieldset
+    //- include footer.jade

@@ -11,6 +11,8 @@ $(document).ready(function () {
     
     if (sessionStorage.userData != undefined ) {  
         $("#logout-nav-btn").show();
+        chooseGame();
+        $('header').show();
     }
     
     if ($("body").hasClass("ranking")) {
@@ -44,13 +46,13 @@ function collectData() {
 
 //Go to Login Form, button click
 function onLoginFormBtnClick() {
-    var legendHtml =        '<legend>Логин</legend>';
-    var usernameHtml =      '<label for="tb-username">Потребителско име</label>' +
-                            '<input id="tb-username" type="text" autofocus="autofocus" />';
-    var passHtml =          '<label for="tb-pass">Парола</label>' +
-                            '<input id="tb-pass" type="password" />';
-    var loginButtonHtml =   '<button type="button" id="login-button" class="btn btn-info">Влез</button>';
-    var regFormBtnHtml =    '<button type="button" id="reg-form-button" class="btn btn-info">Регистрирай се</button>';
+    var legendHtml =        '<legend>Login</legend>';
+    var usernameHtml =      '<label for="tb-username"></label>' +
+                            '<input id="tb-username" type="text" autofocus="autofocus" placeholder="username"/> ';
+    var passHtml =          '<label for="tb-pass"></label>' +
+                            '<input id="tb-pass" type="password" placeholder="password"/>';
+    var loginButtonHtml =   '<button type="button" id="login-button" class="btn btn-default full-width btn-md">Login</button>';
+    var regFormBtnHtml =    '<button type="button" id="reg-form-button" class="btn btn-link green full-width btn-xs">Register</button>';
     
     $("#registration-login-form fieldset").html(legendHtml + usernameHtml + passHtml + loginButtonHtml + regFormBtnHtml);
     
@@ -64,13 +66,13 @@ function onRegFormBtnClick() {
     $("#reg-form-button").hide();
     $("#login-button").hide();
     
-    var legendHtml =        'Регистрация';
-    var nicknameHtml =      '<label for="tb-nickname">Прякор</label>' +
-                            '<input id="tb-nickname" type="text" />';
-    var repeatPassHtml =    '<label for="tb-repeat-pass">Повтори парола</label>' +
-                            '<input id="tb-repeat-pass" type="password" />';
-    var registerButton =    '<button type="button" id="register-button" class="btn btn-info">Регистрирай ме!</button>';
-    var backToLoginBtn =    '<button type="button" id="login-form-button" class="btn btn-info">Вече имам регистрация</button>';
+    var legendHtml =        'Register';
+    var nicknameHtml =      '<label for="tb-nickname"></label>' +
+                            '<input id="tb-nickname" type="text" placeholder="nickname" />';
+    var repeatPassHtml =    '<label for="tb-repeat-pass"></label>' +
+                            '<input id="tb-repeat-pass" type="password" placeholder="repeat password"/>';
+    var registerButton =    '<button type="button" id="register-button" class="btn btn-default full-width btn-md">Register</button>';
+    var backToLoginBtn =    '<button type="button" id="login-form-button" class="btn btn-link green full-width btn-xs">Login</button>';
     
     $("#registration-login-form fieldset legend").html(legendHtml);
     $("#tb-username").after(nicknameHtml);
@@ -120,6 +122,10 @@ function onUserLoginSuccess(data) {
     
     if (data === null) {
         $("#registration-login-form").remove();
+        // new
+        $('#simple-modal, #simple-modal-overlay').remove();
+        $('header').show();
+
         chooseGame();
     }   
 }
@@ -173,9 +179,10 @@ function onUserRegisterSuccess(data) {
 
 //Choose Game
 function chooseGame() {
+    $('body').addClass('body-recolor');
     $("#start-game").remove();
-    var startGameHtml = '<button id="random-game" class="btn btn-primary">Игра със случайни въпроси</div>' +
-                        '<button id="custom-game" class="btn btn-primary">Игра чрез избор на категория</div>'
+    // new
+    var startGameHtml = '<div class="row"><div class="col-md-6 random category"><img class="icon-resize" src="img/icon-slot-machine.png"><div class="handle"></div><div class="ball"></div><p class="top-20 icon-text">Play with random questions from different categories.</p><button id="random-game" class="btn btn-link red">START</div><div class="col-md-6 pick category"><img class="icon-check" src="img/icon-check.png"><img class="icon-resize" src="img/icon-categories.png"><p class="top-20 icon-text">Pick your own category <br> to play from.</p><button id="custom-game" class="btn btn-link red">START</div></div></div>'
     $("#container").html(startGameHtml);
     $("#random-game").on("click", startRandomGame);
     $("#custom-game").on("click", startCustomGame);
@@ -201,17 +208,25 @@ function startCustomGame() {
 
 //Get Categories Success
 function onSuccessGetCategories (data) {
-        var categoriesHtml=  '<ul id="categories-list">' +
+        var categoriesHtml=  '<ul id="categories-list" class="default_list">' +
                              '</ul>'  ;
-        $("#container").html("<p>В коя категория?</p>" + categoriesHtml);
+                             // new
+        $("#container").html("<div class='row margin top-40'><form class='col-md-12' role='search'><div class='form-group'><input type='text' data-list='.default_list' autocomplete='off' id='search' name='search' class='form-control search' placeholder='Search'></div></form><p>В асфафса категория?</p></div>" + categoriesHtml);
         for (i=0;i<data.length;i++) {
             $("#categories-list").append('<li>' + '<a href data-id="' + data[i].id + '">' + data[i].name  + '</a>' + '</li>');
         }
         $("#categories-list li a").on("click", chosenCategory);
+        $('#search').hideseek({
+          highlight: true
+        });
+        $('#container').removeClass('valign');
+        $('.valign-wrapper').removeClass('valign-wrapper');
 }
 
 //Choosen Category Success
 function chosenCategory() {
+        $('#container').addClass('valign');
+        $('.valign-wrapper').addClass('valign-wrapper');
         var userData = JSON.parse(sessionStorage.userData);
         performPostRequest(serviceRootUrl + "start-game/" + $(this).attr("data-id"), userData, onStartGameSuccess, onError);
         return false;
@@ -220,7 +235,9 @@ function chosenCategory() {
 //Start Game Success
 function onStartGameSuccess(data) {
     preLoaderEnd();
-    $("header").hide();
+    // new
+    // $("header").hide();
+    $("header").addClass('disable');
     var timerHtml = '<div id="countdown">' +
                        '<div class="progress progress-striped active"><div class="bar"></div></div>' +
                        '<div id="timer"><span id="minutes"></span><span>:</span><span id="seconds"></span></div>' +
@@ -255,6 +272,7 @@ function onStartGameSuccess(data) {
 
 //Post Answers 
 function postAnswers() {
+    $("header").removeClass('disable');
     var data = collectDataAnswers();
     performPostRequest2(serviceRootUrl + "post-answers/" + sessionStorage.gameID, data, postAnswersSuccess, onError);
 }

@@ -2,7 +2,7 @@ doctype html
 html
   head
     include head.jade
-  body.index
+  body
     header
       #header-container
         h1
@@ -10,36 +10,34 @@ html
             img#logo(src='img/logo.png', alt='3via-logo', height='51', width='130')
         |                     
         nav
-          ul
+          ul                         
             li
-              a(href='index.html')
-                button#home-nav-btn.btn(type='button')
-                  | &Icy;&gcy;&rcy;&acy;&jcy;!
-            |                             
+              a(href='')
+                button#logout-nav-btn.btn(type='button') LOG OUT
             li
               a(href='add.html')
-                button#add-nav-btn.btn(type='button')
-                  | &Dcy;&ocy;&bcy;&acy;&vcy;&icy;
+                button#add-nav-btn.btn(type='button') ADD question
             |                             
             li
               a(href='ranking.html')
-                button#rank-nav-btn.btn(type='button')
-                  | &Kcy;&lcy;&acy;&scy;&acy;&tscy;&icy;&yacy;
-            |                             
+                button#rank-nav-btn.btn(type='button') LEADERBOARD
             li
-              a(href='')
-                button#logout-nav-btn.btn(type='button')
-                  | &Icy;&zcy;&khcy;&ocy;&dcy;
-    .main.container
-      .row.p-top-bottom
-        .col-md-4
-          p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure facere accusamus eum et, rerum possimus accusantium adipisci repudiandae delectus laborum. 
-        .col-md-4
-          p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure facere accusamus eum et, rerum possimus accusantium adipisci repudiandae delectus laborum. 
-        .col-md-4
-          p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure facere accusamus eum et, rerum possimus accusantium adipisci repudiandae delectus laborum. 
-      .row
-        #container
-          form#registration-login-form
-            fieldset
-    //- include footer.jade
+              a(href='index.html')
+                button#play-nav-btn.btn(type='button') PLAY
+    
+    .main.container.valign-wrapper
+      #container.row.valign
+        .col-md-12
+          .row
+            .col-md-12.text-center.front-ill
+              img(src="img/front-ill.png", alt="illustration")
+          .row
+            h1.col-md-12.text-center.hero-title Play and learn
+          .row.top-40
+            .col-md-4.col-sm-12.text-right
+              a.btn.btn-link.btn-lg Leaderboard 
+            .col-md-4.col-sm-12.text-center
+              a(href='#').btn.btn-success.btn-lg.start-btn START
+            .col-md-4.col-sm-12.text-left
+              a.btn.btn-link.btn-lg Add question
+
